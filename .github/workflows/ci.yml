@@ -50,7 +50,7 @@ jobs:
 
     - name: Verify required files
       run: |
-        echo "Verifying required template files exist..."
+        echo "Verifying required documentation files exist..."
         required_files=(
           "README.md"
           "CONTRIBUTING.md"
@@ -58,6 +58,10 @@ jobs:
           "LICENSE"
           "SECURITY.md"
           ".gitignore"
+          "MODULE_INDEX.md"
+          "FOLDER_STRUCTURE.md"
+          "docs/guides/STYLE_GUIDE.md"
+          "docs/modules/example-module/README.md"
           ".github/ISSUE_TEMPLATE/bug_report.md"
           ".github/ISSUE_TEMPLATE/feature_request.md"
           ".github/PULL_REQUEST_TEMPLATE.md"
@@ -76,15 +80,21 @@ jobs:
           exit 1
         fi
 
-        echo "All required template files are present!"
+        echo "All required documentation files are present!"
 
     - name: Validate file content
       run: |
         echo "Validating file content..."
 
-        # Check README has basic sections
-        if ! grep -q "## Overview" README.md || ! grep -q "## Installation" README.md; then
-          echo "Error: README.md missing required sections"
+        # Check README has documentation-specific sections
+        if ! grep -q "## Overview" README.md || ! grep -q "Documentation" README.md; then
+          echo "Error: README.md missing documentation-specific content"
+          exit 1
+        fi
+
+        # Check MODULE_INDEX exists and has required sections
+        if ! grep -q "## Modules" MODULE_INDEX.md; then
+          echo "Error: MODULE_INDEX.md missing required sections"
           exit 1
         fi
 
@@ -101,6 +111,56 @@ jobs:
         fi
 
         echo "File content validation passed!"
+
+    - name: Validate documentation structure
+      run: |
+        echo "Validating documentation directory structure..."
+
+        # Check docs directories exist
+        required_dirs=(
+          "docs"
+          "docs/modules"
+          "docs/guides"
+          "docs/api"
+          "docs/architecture"
+        )
+
+        for dir in "${required_dirs[@]}"; do
+          if [ ! -d "$dir" ]; then
+            echo "Error: Required directory $dir does not exist"
+            exit 1
+          fi
+        done
+
+        echo "Documentation structure validation passed!"
+
+    - name: Validate module documentation
+      run: |
+        echo "Validating module documentation format..."
+
+        # Check that example module exists
+        if [ ! -f "docs/modules/example-module/README.md" ]; then
+          echo "Error: Example module documentation is missing"
+          exit 1
+        fi
+
+        # Check for required sections in example module
+        example_readme="docs/modules/example-module/README.md"
+        required_sections=(
+          "## Overview"
+          "## Installation"
+          "## Quick Start"
+          "## Configuration"
+          "## Usage"
+        )
+
+        for section in "${required_sections[@]}"; do
+          if ! grep -q "$section" "$example_readme"; then
+            echo "Warning: Example module missing recommended section: $section"
+          fi
+        done
+
+        echo "Module documentation validation completed!"
 
   security:
     name: Security Check
@@ -132,5 +192,5 @@ jobs:
 
     - name: Verify template structure
       run: |
-        echo "Template structure verification complete!"
-        echo "All checks passed. Template is ready to use!"
+        echo "Documentation repository structure verification complete!"
+        echo "All checks passed. Repository is ready for collaboration!"

@@ -1,23 +1,32 @@
 # Folder Structure
 
-This document describes the organization and structure of the Horizon Template repository. Understanding this structure will help you navigate the codebase and know where to place new files.
+This document describes the organization and structure of the Horizon Documentation repository. Understanding this structure will help you navigate the documentation and know where to add new content.
 
 ## Repository Structure
 
 ```
-horizon-template/
+horizon-documentation/
 ├── .github/                          # GitHub-specific configurations
-│   ├── ISSUE_TEMPLATE/              # Issue templates for bug reports and feature requests
-│   │   ├── bug_report.md           # Template for reporting bugs
-│   │   └── feature_request.md      # Template for requesting features
+│   ├── ISSUE_TEMPLATE/              # Issue templates
+│   │   ├── bug_report.md           # Template for reporting documentation issues
+│   │   └── feature_request.md      # Template for requesting new documentation
 │   ├── workflows/                   # GitHub Actions workflows
-│   │   └── ci.yml                  # Continuous integration workflow
-│   └── PULL_REQUEST_TEMPLATE.md    # Template for pull requests
+│   │   └── ci.yml                  # Documentation validation workflow
+│   └── PULL_REQUEST_TEMPLATE.md    # Template for documentation PRs
+├── docs/                            # Main documentation directory
+│   ├── modules/                     # Module-specific documentation
+│   │   └── example-module/         # Example module documentation
+│   │       └── README.md           # Module documentation template
+│   ├── guides/                      # User guides and tutorials
+│   │   └── STYLE_GUIDE.md          # Documentation style guide
+│   ├── api/                         # API documentation
+│   └── architecture/                # Architecture and design documents
 ├── CODE_OF_CONDUCT.md               # Community code of conduct
-├── CONTRIBUTING.md                  # Contribution guidelines
+├── CONTRIBUTING.md                  # Contribution guidelines for documentation
 ├── FOLDER_STRUCTURE.md              # This file - describes repository structure
 ├── LICENSE                          # MIT License
-├── README.md                        # Main project documentation
+├── MODULE_INDEX.md                  # Central index of all documented modules
+├── README.md                        # Main repository documentation
 ├── SECURITY.md                      # Security policy and vulnerability reporting
 └── .gitignore                       # Git ignore patterns
 ```
@@ -29,33 +38,64 @@ horizon-template/
 Contains all GitHub-specific configuration files:
 
 - **`ISSUE_TEMPLATE/`**: Templates for creating structured issues
-  - `bug_report.md`: Helps users report bugs with all necessary information
-  - `feature_request.md`: Guides users in proposing new features
+  - `bug_report.md`: Helps users report documentation issues
+  - `feature_request.md`: Guides users in requesting new documentation
 
 - **`workflows/`**: GitHub Actions workflow definitions
-  - `ci.yml`: Continuous integration workflow that runs tests and checks
+  - `ci.yml`: Automated checks for documentation quality and structure
 
-- **`PULL_REQUEST_TEMPLATE.md`**: Template that appears when creating pull requests
+- **`PULL_REQUEST_TEMPLATE.md`**: Template for documentation pull requests
+
+### `docs/`
+
+The main documentation directory containing all module and guide documentation:
+
+- **`modules/`**: Module-specific documentation
+  - Each module has its own subdirectory
+  - Contains README.md with complete module documentation
+  - May include additional files for API docs, examples, etc.
+  - Example: `docs/modules/example-module/`
+
+- **`guides/`**: User guides, tutorials, and best practices
+  - `STYLE_GUIDE.md`: Documentation writing standards
+  - Getting started guides
+  - Integration tutorials
+  - Best practices documentation
+
+- **`api/`**: API documentation and references
+  - API endpoint documentation
+  - API usage guides
+  - Authentication guides
+
+- **`architecture/`**: Architecture and design documentation
+  - System architecture diagrams
+  - Design decisions
+  - Technical specifications
 
 ### Root Directory Files
 
 #### Documentation Files
 
 - **`README.md`**: The main entry point for the repository. Contains:
-  - Project overview
-  - Installation instructions
-  - Usage guidelines
-  - Links to other documentation
+  - Repository overview and purpose
+  - Quick start guide
+  - Navigation help
+  - Links to key documentation
 
-- **`CONTRIBUTING.md`**: Guidelines for contributors including:
-  - How to report bugs
-  - How to suggest features
-  - Development workflow
-  - Coding standards
-  - Commit message guidelines
+- **`MODULE_INDEX.md`**: Central catalog of all documented modules:
+  - Complete list of modules with descriptions
+  - Direct links to module documentation
+  - Module categories and organization
+  - Instructions for adding new modules
 
-- **`CODE_OF_CONDUCT.md`**: Defines expected behavior for community members:
-  - Standards of behavior
+- **`CONTRIBUTING.md`**: Guidelines for documentation contributors:
+  - How to add new documentation
+  - Documentation standards
+  - Pull request process
+  - Review guidelines
+
+- **`CODE_OF_CONDUCT.md`**: Expected behavior for contributors:
+  - Community standards
   - Enforcement policies
   - Reporting guidelines
 
@@ -66,7 +106,7 @@ Contains all GitHub-specific configuration files:
 
 - **`FOLDER_STRUCTURE.md`**: This document explaining the repository organization
 
-- **`LICENSE`**: MIT License for the project
+- **`LICENSE`**: MIT License for the documentation
 
 #### Configuration Files
 
@@ -80,92 +120,113 @@ Contains all GitHub-specific configuration files:
 
 ## File Naming Conventions
 
-- **Markdown files**: Use `UPPERCASE.md` for root-level documentation (e.g., `README.md`, `CONTRIBUTING.md`)
-- **Template files**: Use `lowercase_with_underscores.md` (e.g., `bug_report.md`, `feature_request.md`)
+- **Markdown files**: Use `UPPERCASE.md` for root-level documentation (e.g., `README.md`, `MODULE_INDEX.md`)
+- **Module directories**: Use `lowercase-with-hyphens` (e.g., `example-module`, `api-gateway`)
+- **Guide files**: Use `UPPERCASE.md` for main guides (e.g., `STYLE_GUIDE.md`)
 - **Configuration files**: Follow the convention of the tool (e.g., `.gitignore`, `ci.yml`)
 
-## When Using This Template
+## Documentation Organization
 
-When you use this template for a new project, you may want to add:
+### Module Documentation Structure
 
-### Source Code Directory
-
-```
-src/                    # Source code directory
-├── components/        # Reusable components
-├── utils/            # Utility functions
-├── services/         # Service layer
-└── ...               # Other source code
-```
-
-### Tests Directory
+Each module follows this standard structure:
 
 ```
-tests/                 # Test files
-├── unit/             # Unit tests
-├── integration/      # Integration tests
-└── e2e/              # End-to-end tests
+docs/modules/module-name/
+├── README.md              # Main module documentation
+├── QUICKSTART.md          # Quick start guide (optional)
+├── API.md                 # API reference (optional)
+├── CONFIGURATION.md       # Configuration guide (optional)
+├── EXAMPLES.md            # Usage examples (optional)
+├── TROUBLESHOOTING.md     # Common issues (optional)
+└── assets/               # Images, diagrams, etc. (optional)
 ```
 
-### Documentation Directory
+### Required Content in Module README
 
-```
-docs/                  # Additional documentation
-├── api/              # API documentation
-├── guides/           # User guides
-└── architecture/     # Architecture documentation
-```
+Every module's README.md must include:
 
-### Build and Distribution
+1. **Overview**: What the module does
+2. **Installation**: How to install
+3. **Quick Start**: Simple example
+4. **Configuration**: Configuration options
+5. **Usage**: How to use the module
+6. **API Reference**: Key APIs (or link to API.md)
+7. **Troubleshooting**: Common issues
 
-```
-dist/                  # Built/compiled files (should be in .gitignore)
-build/                 # Build output (should be in .gitignore)
-public/               # Public assets
-assets/               # Static assets
-```
+### Guide Documentation
 
-### Configuration
-
-```
-config/               # Configuration files
-├── development/      # Development environment config
-├── staging/         # Staging environment config
-└── production/      # Production environment config
-```
+Guides in `docs/guides/` should:
+- Be focused on a specific topic
+- Include practical examples
+- Link to related modules
+- Follow the style guide
 
 ## Best Practices
 
-1. **Keep root directory clean**: Only essential files should be in the root
-2. **Organize by feature**: Group related files together
-3. **Use meaningful names**: File and directory names should be self-explanatory
-4. **Document structure**: Update this file when adding new directories
-5. **Ignore generated files**: Add build artifacts and dependencies to `.gitignore`
-6. **Follow conventions**: Maintain consistency with established patterns
+1. **Keep structure consistent**: Follow the established module documentation pattern
+2. **Organize by module**: Each module gets its own directory
+3. **Use meaningful names**: Directory and file names should be self-explanatory
+4. **Update the index**: Always update MODULE_INDEX.md when adding modules
+5. **Follow the style guide**: Maintain consistency with docs/guides/STYLE_GUIDE.md
+6. **Include examples**: Add practical code examples in all documentation
+7. **Link between docs**: Create cross-references to related documentation
 
-## Adding New Directories
+## Adding New Content
 
-When adding new directories to your project:
+### Adding a New Module
 
-1. Create the directory with a clear, descriptive name
-2. Add a `README.md` in the directory explaining its purpose
-3. Update this `FOLDER_STRUCTURE.md` file with the new directory
-4. Update `.gitignore` if the directory contains generated files
-5. Document any special conventions for files in that directory
+1. Create module directory: `docs/modules/module-name/`
+2. Copy the example template from `docs/modules/example-module/README.md`
+3. Fill in all required sections
+4. Add any additional documentation files as needed
+5. Update `MODULE_INDEX.md` with the new module
+6. Submit a pull request
 
-## Project-Specific Customization
+### Adding a New Guide
 
-This is a template repository. When using it for a specific project:
+1. Create the guide in `docs/guides/`
+2. Follow the style guide for formatting
+3. Include practical examples
+4. Link from README.md or MODULE_INDEX.md as appropriate
+5. Submit a pull request
 
-- [ ] Customize the folder structure to match your project needs
-- [ ] Update this document to reflect your actual structure
-- [ ] Remove sections that don't apply to your project
-- [ ] Add project-specific directories and documentation
-- [ ] Update the README.md with project-specific information
+### Adding API Documentation
+
+1. Create or update files in `docs/api/`
+2. Follow REST API documentation standards
+3. Include request/response examples
+4. Document authentication requirements
+5. Link from relevant module documentation
+
+## Repository-Specific Conventions
+
+This documentation repository follows these conventions:
+
+### Documentation Status
+
+Each module in MODULE_INDEX.md has a status:
+- **Active**: Module is actively maintained and documented
+- **Deprecated**: Module is deprecated, docs kept for reference
+- **In Development**: Documentation is being written
+- **Archived**: Module is no longer maintained
+
+### Version Information
+
+- Document version-specific features in module docs
+- Keep a CHANGELOG.md for significant documentation updates
+- Note breaking changes clearly
+
+### Cross-References
+
+- Use relative links between documents
+- Link to specific sections using anchors
+- Keep links up-to-date when moving files
 
 ## Questions?
 
-If you have questions about where a file should go or how to organize your code, refer to:
-- This document
-- The `CONTRIBUTING.md` file for contribution guidelines
+If you have questions about where documentation should go:
+- Check the [Style Guide](docs/guides/STYLE_GUIDE.md)
+- Review the [example module](docs/modules/example-module/)
+- Refer to [CONTRIBUTING.md](CONTRIBUTING.md)
 - Open an issue to discuss structural changes
