@@ -1,0 +1,10 @@
+site_name: Horizon Security Documentation
+nav:
+  - Home: index.md
+  - Getting Started: getting-started.md
+theme:
+  name: material
+markdown_extensions:
+  - admonition
+  - codehilite
+  - toc
