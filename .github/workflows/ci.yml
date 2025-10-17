@@ -1,0 +1,136 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Check file formatting
+      run: |
+        echo "Running basic file checks..."
+        # Check for trailing whitespace
+        if grep -r --exclude-dir=.git --exclude-dir=node_modules -n '[[:blank:]]$' .; then
+          echo "Error: Trailing whitespace found"
+          exit 1
+        fi
+        echo "File formatting checks passed!"
+
+    - name: Validate Markdown
+      uses: actionshub/markdownlint@main
+      continue-on-error: true
+
+    - name: Check for large files
+      run: |
+        echo "Checking for large files..."
+        large_files=$(find . -type f -size +10M -not -path "./.git/*")
+        if [ -n "$large_files" ]; then
+          echo "Warning: Large files found:"
+          echo "$large_files"
+        else
+          echo "No large files found"
+        fi
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Verify required files
+      run: |
+        echo "Verifying required template files exist..."
+        required_files=(
+          "README.md"
+          "CONTRIBUTING.md"
+          "CODE_OF_CONDUCT.md"
+          "LICENSE"
+          "SECURITY.md"
+          ".gitignore"
+          ".github/ISSUE_TEMPLATE/bug_report.md"
+          ".github/ISSUE_TEMPLATE/feature_request.md"
+          ".github/PULL_REQUEST_TEMPLATE.md"
+        )
+
+        missing_files=()
+        for file in "${required_files[@]}"; do
+          if [ ! -f "$file" ]; then
+            missing_files+=("$file")
+          fi
+        done
+
+        if [ ${#missing_files[@]} -ne 0 ]; then
+          echo "Error: Missing required files:"
+          printf '%s\n' "${missing_files[@]}"
+          exit 1
+        fi
+
+        echo "All required template files are present!"
+
+    - name: Validate file content
+      run: |
+        echo "Validating file content..."
+
+        # Check README has basic sections
+        if ! grep -q "## Overview" README.md || ! grep -q "## Installation" README.md; then
+          echo "Error: README.md missing required sections"
+          exit 1
+        fi
+
+        # Check LICENSE contains MIT
+        if ! grep -q "MIT License" LICENSE; then
+          echo "Error: LICENSE file doesn't contain MIT License"
+          exit 1
+        fi
+
+        # Check CODE_OF_CONDUCT has required sections
+        if ! grep -q "## Our Pledge" CODE_OF_CONDUCT.md; then
+          echo "Error: CODE_OF_CONDUCT.md missing required sections"
+          exit 1
+        fi
+
+        echo "File content validation passed!"
+
+  security:
+    name: Security Check
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Run security checks
+      run: |
+        echo "Running basic security checks..."
+
+        # Check for common secrets patterns
+        if grep -rE "(password|secret|api[_-]?key|token)\s*=\s*['\"][^'\"]+['\"]" --exclude-dir=.git --exclude="*.md" .; then
+          echo "Warning: Potential hardcoded secrets found"
+        fi
+
+        echo "Security checks completed!"
+
+  build:
+    name: Build Check
+    runs-on: ubuntu-latest
+    needs: [lint, test]
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Verify template structure
+      run: |
+        echo "Template structure verification complete!"
+        echo "All checks passed. Template is ready to use!"
