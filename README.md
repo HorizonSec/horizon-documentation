@@ -1,75 +1,113 @@
-# Horizon Template
+# Horizon Security Documentation
 
-[![CI](https://github.com/HorizonSec/horizon-template/workflows/CI/badge.svg)](https://github.com/HorizonSec/horizon-template/actions)
+[![CI](https://github.com/HorizonSec/horizon-documentation/workflows/CI/badge.svg)](https://github.com/HorizonSec/horizon-documentation/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Overview
 
-Welcome to the **Horizon Template** repository! This is a template repository for the HorizonSec organization, designed to help you quickly bootstrap new projects with best practices, standard configurations, and essential documentation.
+Welcome to the **Horizon Security Documentation** repository! This is the centralized documentation hub for the Horizon Security Framework, providing comprehensive documentation for all modules and components.
 
-This template includes:
-- Comprehensive documentation (README, CONTRIBUTING, CODE_OF_CONDUCT)
-- Issue and pull request templates
-- GitHub Actions CI workflow
-- Security policy
-- Standard .gitignore configurations
-- Open-source license (MIT)
+The Horizon Security Framework consists of four core modules:
+- **GAIA Framework** - Security orchestration and management
+- **DEMETER Infrastructure Scan** - Infrastructure security assessment
+- **HADES Endpoint Security** - Endpoint detection and response
+- **ARTEMIS Static Code Analysis** - Application security testing
+
+## Documentation Site
+
+The documentation is built with [MkDocs](https://www.mkdocs.org/) and [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/).
+
+Visit the live documentation at: **https://horizonsec.github.io/horizon-documentation**
 
 ## Getting Started
 
-### Prerequisites
+### Using Hatch (Recommended)
 
-Before using this template, ensure you have:
-- Git installed on your local machine
-- A GitHub account with access to HorizonSec organization
-- Basic understanding of Git and GitHub workflows
+This project uses [Hatch](https://hatch.pypa.io/) for project management.
 
-### Installation
-
-1. **Use this template** by clicking the "Use this template" button at the top of this repository
-2. **Clone your new repository**:
+1. **Install Hatch**:
    ```bash
-   git clone https://github.com/HorizonSec/your-new-repo.git
-   cd your-new-repo
+   pip install hatch
    ```
-3. **Customize the template**:
-   - Update this README.md with your project-specific information
-   - Modify the LICENSE if needed
-   - Adjust the CI workflow in `.github/workflows/ci.yml` for your project's needs
-   - Update SECURITY.md with your security contact information
 
-## Usage
+2. **Clone the repository**:
+   ```bash
+   git clone https://github.com/HorizonSec/horizon-documentation.git
+   cd horizon-documentation
+   ```
 
-This template provides a solid foundation for new projects. Here's how to make the most of it:
+3. **Serve the documentation locally**:
+   ```bash
+   hatch run serve
+   ```
+   
+   The documentation will be available at `http://127.0.0.1:8000`
 
-### Project Structure
+### Manual Setup
 
-See [FOLDER_STRUCTURE.md](FOLDER_STRUCTURE.md) for a detailed explanation of the repository structure.
+If you prefer not to use Hatch:
 
-### Creating Issues
+1. **Install dependencies**:
+   ```bash
+   pip install mkdocs mkdocs-material
+   ```
 
-Use the provided issue templates:
-- **Bug Reports**: Use `.github/ISSUE_TEMPLATE/bug_report.md`
-- **Feature Requests**: Use `.github/ISSUE_TEMPLATE/feature_request.md`
+2. **Serve locally**:
+   ```bash
+   mkdocs serve
+   ```
 
-### Submitting Pull Requests
+## Available Commands
 
-Follow the pull request template at `.github/PULL_REQUEST_TEMPLATE.md` to ensure all necessary information is provided.
+### Using Hatch
 
-### Running CI
+```bash
+# Serve documentation locally (with live reload)
+hatch run serve
 
-The GitHub Actions workflow (`.github/workflows/ci.yml`) automatically runs on:
-- Push to main branch
-- Pull requests to main branch
+# Build documentation
+hatch run build
 
-Customize the workflow to include your project's specific tests and linting requirements.
+# Deploy to GitHub Pages
+hatch run deploy
+
+# Clean build artifacts
+hatch run clean
+```
+
+### Using MkDocs directly
+
+```bash
+# Serve documentation locally
+mkdocs serve
+
+# Build documentation
+mkdocs build
+
+# Deploy to GitHub Pages
+mkdocs gh-deploy
+```
+
+## Documentation Structure
+
+```
+docs/
+├── index.md                    # Home page
+├── getting-started.md          # Getting started guide
+└── modules/                    # Module documentation
+    ├── index.md                # Modules overview
+    ├── gaia-framework.md       # GAIA Framework
+    ├── demeter-infra-scan.md   # DEMETER Infrastructure Scan
+    ├── hades-endpoint.md       # HADES Endpoint Security
+    └── artemis-static-code.md  # ARTEMIS Static Code Analysis
+```
 
 ## Contributing
 
 We welcome contributions from the community! Please read our [CONTRIBUTING.md](CONTRIBUTING.md) for details on:
 - How to submit issues
 - How to create pull requests
-- Coding standards and best practices
+- Documentation standards and best practices
 - Development workflow
 
 ## Code of Conduct
