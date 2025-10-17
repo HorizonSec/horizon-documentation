@@ -1,0 +1,82 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "horizon-documentation"
+version = "0.1.0"
+description = "Centralized documentation hub for the Horizon Security Framework"
+readme = "README.md"
+requires-python = ">=3.8"
+license = "MIT"
+authors = [
+    { name = "HorizonSec Team" }
+]
+keywords = [
+    "documentation",
+    "security",
+    "horizon",
+    "mkdocs",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Documentation",
+    "Topic :: Security",
+]
+dependencies = [
+    "mkdocs>=1.5.0",
+    "mkdocs-material>=9.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/HorizonSec/horizon-documentation"
+Documentation = "https://horizonsec.github.io/horizon-documentation"
+Repository = "https://github.com/HorizonSec/horizon-documentation"
+Issues = "https://github.com/HorizonSec/horizon-documentation/issues"
+
+[tool.hatch.version]
+path = "pyproject.toml"
+pattern = "version = \"(?P<version>[^\"]+)\""
+
+[tool.hatch.build.targets.wheel]
+packages = []
+
+[tool.hatch.envs.default]
+dependencies = [
+    "mkdocs>=1.5.0",
+    "mkdocs-material>=9.0.0",
+]
+
+[tool.hatch.envs.default.scripts]
+serve = "mkdocs serve"
+build = "mkdocs build"
+deploy = "mkdocs gh-deploy"
+clean = "rm -rf site/"
+
+[tool.hatch.envs.dev]
+dependencies = [
+    "mkdocs>=1.5.0",
+    "mkdocs-material>=9.0.0",
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+]
+
+[tool.hatch.envs.dev.scripts]
+test = "pytest {args:tests}"
+test-cov = "pytest --cov=. {args:tests}"
+serve = "mkdocs serve"
+build = "mkdocs build"

@@ -1,0 +1,59 @@
+site_name: Horizon Security Documentation
+site_description: Comprehensive documentation for the Horizon Security Framework
+site_url: https://horizonsec.github.io/horizon-documentation
+repo_url: https://github.com/HorizonSec/horizon-documentation
+repo_name: HorizonSec/horizon-documentation
+
+nav:
+  - Home: index.md
+  - Getting Started: getting-started.md
+  - Core:
+    - Horizon Core: core/horizon-core.md
+  - Modules:
+    - Overview: modules/index.md
+    - GAIA Framework: modules/gaia-framework.md
+    - DEMETER Infrastructure Scan: modules/demeter-infra-scan.md
+    - HADES Endpoint Security: modules/hades-endpoint.md
+    - ARTEMIS Static Code Analysis: modules/artemis-static-code.md
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+
+markdown_extensions:
+  - admonition
+  - codehilite
+  - toc:
+      permalink: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.details
+  - attr_list
+  - md_in_html
+
+plugins:
+  - search

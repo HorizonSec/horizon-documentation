@@ -8,6 +8,9 @@ ehthumbs.db
 Thumbs.db
 *~
 
+# MkDocs generated site
+/site/
+
 # IDEs and Editors
 .vscode/
 .idea/
