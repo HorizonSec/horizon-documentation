@@ -4,7 +4,11 @@ This site provides comprehensive documentation for the Horizon Security Framewor
 
 ## Horizon Security Framework
 
-The Horizon Security Framework is a comprehensive security solution designed to protect modern infrastructure and applications. It consists of four core modules:
+The Horizon Security Framework is a comprehensive security solution designed to protect modern infrastructure and applications. It consists of four core modules built on the **[Horizon Core](core/horizon-core.md)** template.
+
+### Foundation
+
+- **[Horizon Core](core/horizon-core.md)** - Foundational template for all HorizonSec projects, providing standardized structure, documentation, and workflows
 
 ### Core Modules
 
@@ -16,6 +20,7 @@ The Horizon Security Framework is a comprehensive security solution designed to 
 ## Quick Navigation
 
 - **[Getting Started](getting-started.md)** - Begin your journey with the Horizon Security Framework
+- **[Horizon Core](core/horizon-core.md)** - Learn about the foundational template
 - **[Modules Overview](modules/index.md)** - Explore all available modules
 - **[GitHub Repository](https://github.com/HorizonSec/horizon-documentation)** - Access the source code and contribute
 
