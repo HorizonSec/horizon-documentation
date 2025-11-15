@@ -101,10 +101,10 @@ scan:
     - cloud_resources
     - network_devices
     - containers
-    
+
   # Scan depth
   depth: comprehensive  # quick, standard, comprehensive
-  
+
   # Exclusions
   exclude:
     - "10.0.0.0/8"
@@ -180,7 +180,7 @@ results = client.demeter.get_scan_results(scan_id='abc123')
 
 # Create remediation workflow
 if results.critical_findings:
-    client.workflow.execute('infrastructure_remediation', 
+    client.workflow.execute('infrastructure_remediation',
                            findings=results.critical_findings)
 ```
 

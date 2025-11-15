@@ -159,12 +159,12 @@ monitoring:
   network: true
   files: true
   registry: true  # Windows only
-  
+
 detection:
   behavioral: true
   signature: true
   anomaly: true
-  
+
 response:
   allow_isolation: true
   allow_remediation: true
@@ -235,7 +235,7 @@ client.hades.isolate_endpoint(endpoint_id='endpoint-123')
 
 # Create incident workflow
 for endpoint in endpoints:
-    client.workflow.execute('endpoint_incident_response', 
+    client.workflow.execute('endpoint_incident_response',
                            endpoint=endpoint.id)
 ```
 

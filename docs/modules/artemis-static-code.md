@@ -83,7 +83,7 @@ analysis:
     - python
     - javascript
     - java
-    
+
   # Security rules
   security:
     enabled_rules:
@@ -92,15 +92,15 @@ analysis:
       - path-traversal
       - hardcoded-secrets
       - weak-crypto
-    
+
     severity_threshold: medium
-    
+
   # Code quality
   quality:
     max_complexity: 10
     max_lines_per_function: 50
     min_code_coverage: 80
-    
+
   # Exclusions
   exclude:
     - "*/tests/*"
@@ -122,13 +122,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      
+
       - name: Run ARTEMIS Scan
         uses: horizonsec/artemis-action@v1
         with:
           config: artemis.yaml
           fail-on: critical
-          
+
       - name: Upload Results
         uses: actions/upload-artifact@v3
         with:
@@ -196,7 +196,7 @@ results = scanner.scan_directory('/path/to/code')
 
 # Filter results
 critical_issues = [
-    issue for issue in results.issues 
+    issue for issue in results.issues
     if issue.severity == 'critical'
 ]
 
@@ -355,7 +355,7 @@ rules:
       print($SENSITIVE_DATA)
     message: "Avoid using print() for sensitive data"
     recommendation: "Use proper logging framework"
-    
+
   - id: custom-api-key-check
     name: Hardcoded API key
     severity: critical

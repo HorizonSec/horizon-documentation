@@ -60,7 +60,7 @@ Horizon Core provides automated workflows for:
    # Clone your new repository
    git clone https://github.com/HorizonSec/your-new-project.git
    cd your-new-project
-   
+
    # Customize the template
    # Update README.md with project-specific information
    # Modify LICENSE if needed
