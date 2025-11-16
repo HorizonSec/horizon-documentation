@@ -14,17 +14,17 @@ authors = [
 ]
 keywords = [
     "documentation",
-    "security", 
+    "security",
     "horizon",
     "mkdocs",
 ]
 classifiers = [
     "Development Status :: 3 - Alpha",
-    "Intended Audience :: Developers", 
+    "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9", 
+    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
@@ -32,7 +32,7 @@ classifiers = [
     "Topic :: Security",
 ]
 dependencies = [
-    "mkdocs>=1.5.0", 
+    "mkdocs>=1.5.0",
     "mkdocs-material>=9.0.0",
 ]
 
@@ -45,7 +45,7 @@ dev = [
 [project.urls]
 Homepage = "https://github.com/HorizonSec/horizon-documentation"
 Documentation = "https://horizonsec.github.io/horizon-documentation"
-Repository = "https://github.com/HorizonSec/horizon-documentation" 
+Repository = "https://github.com/HorizonSec/horizon-documentation"
 Issues = "https://github.com/HorizonSec/horizon-documentation/issues"
 
 [tool.hatch.version]
@@ -56,7 +56,7 @@ pattern = "version = \"(?P<version>[^\"]+)\""
 skip-excluded-dirs = true
 
 [tool.hatch.build.targets.wheel]
-packages = ["docs"]
+packages = []
 
 [tool.hatch.envs.default]
 dependencies = [
@@ -72,7 +72,7 @@ clean = "rm -rf site/"
 
 [tool.hatch.envs.dev]
 dependencies = [
-    "mkdocs>=1.5.0", 
+    "mkdocs>=1.5.0",
     "mkdocs-material>=9.0.0",
     "pytest>=7.0.0",
     "pytest-cov>=4.0.0",
