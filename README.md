@@ -19,6 +19,36 @@ The documentation is built with [MkDocs](https://www.mkdocs.org/) and [Material 
 
 Visit the live documentation at: **https://horizonsec.github.io/horizon-documentation**
 
+## Installation
+
+The Horizon Security Documentation can be set up locally for development and contribution purposes.
+
+### Prerequisites
+
+- Python 3.8 or higher
+- pip (Python package manager)
+- Git
+
+### Quick Setup
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/HorizonSec/horizon-documentation.git
+   cd horizon-documentation
+   ```
+
+2. **Install dependencies**:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Serve locally**:
+   ```bash
+   mkdocs serve
+   ```
+
+The documentation will be available at `http://127.0.0.1:8000`
+
 ## Getting Started
 
 ### Using Hatch (Recommended)
@@ -40,7 +70,7 @@ This project uses [Hatch](https://hatch.pypa.io/) for project management.
    ```bash
    hatch run serve
    ```
-   
+
    The documentation will be available at `http://127.0.0.1:8000`
 
 ### Manual Setup

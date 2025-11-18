@@ -89,11 +89,11 @@ database:
 redis:
   host: localhost
   port: 6379
-  
+
 api:
   host: 0.0.0.0
   port: 8000
-  
+
 security:
   secret_key: your_secret_key
   jwt_expiration: 3600
@@ -120,7 +120,7 @@ GAIA provides a RESTful API for integration:
 import requests
 
 # Authenticate
-response = requests.post('http://localhost:8000/api/auth/login', 
+response = requests.post('http://localhost:8000/api/auth/login',
     json={'username': 'admin', 'password': 'password'})
 token = response.json()['token']
 
@@ -135,18 +135,18 @@ Define security workflows in YAML:
 
 ```yaml
 name: threat_response
-trigger: 
+trigger:
   type: event
   source: hades
   severity: critical
-  
+
 steps:
   - action: isolate_endpoint
     module: hades
-    
+
   - action: scan_infrastructure
     module: demeter
-    
+
   - action: notify
     type: email
     recipients: [security-team@example.com]

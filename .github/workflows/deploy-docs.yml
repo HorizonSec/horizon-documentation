@@ -29,16 +29,11 @@ jobs:
           python-version: '3.11'
           cache: 'pip'
 
-      - name: Install Hatch
-        run: pip install hatch
-
       - name: Install dependencies
-        run: |
-          pip install mkdocs mkdocs-material
-          pip install pymdown-extensions
+        run: pip install -r requirements.txt
 
       - name: Build documentation
-        run: hatch run build
+        run: mkdocs build
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
